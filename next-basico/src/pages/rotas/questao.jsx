@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
-export default function questao() {
+export default function Questao() {
     const[questao, setQuestao] = useState()
 
     useEffect(() => {
         fetch('http://localhost:3000/api/questao/123')
             .then(resp => resp.json())
-            .then(setQuestao)
+            .then(setQuestao())
     })
 
     function renderizarRespostas() {
         if(questao) {
             return questao.respostas.map((resp, i) =>{
-                return <li keu={i}>{resp}</li>
+                return <li key={i}>{resp}</li>
             })
         }
         return false
