@@ -1,15 +1,26 @@
-import Presente from '../../components/Presente'
-import Porta from '../../components/Porta'
-import { useState } from 'react'
-import PortaModel from '../../model/porta'
+import styles from "../styles/Formulario.module.css"
+import Cartao from "../../components/Cartao"
+import Link from "next/link"
 
-export default function Home() {
-  
-  const [p1, setP1] = useState(new PortaModel(1))
+export default function Formulario() {
   
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <Porta value={p1} onChange={novaPorta => setP1(novaPorta)}/>
+    <div className={styles.formulario}>
+      <div>
+        <Cartao bgcolor="#c0392c">
+          <h1>Monty Hall</h1>
+        </Cartao>
+        <Cartao></Cartao>
+      </div>
+      <div>
+        <Cartao></Cartao>
+
+        <Cartao bgcolor="#28a085">
+          <Link href={`/jogo/4/2`}>
+            <h2 className={styles.link}>Iniciar</h2>
+          </Link>
+        </Cartao>
+      </div>
     </div>
   )
 }
