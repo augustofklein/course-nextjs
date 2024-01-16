@@ -1,15 +1,32 @@
 import styles from '../../../styles/Jogo.module.css'
 import Porta from '../../../../components/Porta'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { criarPortas, atualizarPortas } from '../../../../functions/portas'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Http2ServerRequest } from 'http2'
 
 export default function jogo() {
 
     const router = useRouter()
 
-    const[portas, setPortas] = useState(criarPortas(4,3))
+    const[valido, setValido] = useState(false)
+    const[portas, setPortas] = useState([])
+
+    useEffect(() => {
+        const portas = +router.query.portas
+        const temPresente = +router.query.temPresente
+        const qtdePortasValidas = portas >= 3 && portas <= 100
+        const temPresenteValido = temPresente >= 1 && temPresente <= portas
+
+        setValido(qtdePortasValidas && temPresenteValido)
+    }, [portas])
+
+    useEffect(() => {
+        const portas = +router.query.portas
+        const temPresente = +router.query.temPresente
+        setPortas(criarPortas(portas, temPresente))
+    }, [portas])
 
     function renderizarPortas() {
         return portas.map(porta => {
@@ -21,7 +38,9 @@ export default function jogo() {
     return (
         <div id={styles.jogo}>
             <div className={styles.portas}>
-                {renderizarPortas()}
+                {valido ?
+                    renderizarPortas() :
+                    <h1>Valores Inválidos</h1>}
             </div>
             <div className={styles.botoes}>
                 <Link href="/">
