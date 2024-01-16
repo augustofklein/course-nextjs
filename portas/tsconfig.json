@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.tsx", "components/Cartao.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.tsx", "components/Cartao.tsx", "components/Presente.jsx", "components/Presente.jsx"],
   "exclude": ["node_modules"]
 }
