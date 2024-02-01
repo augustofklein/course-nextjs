@@ -1,5 +1,4 @@
 import useAppData from "@/data/hook/useAppData"
-import MenuLateral from "./MenuLateral"
 import Titulo from "./Titulo"
 import BotaoAlternarTema from "./BotaoAlternarTema"
 import AvatarUsuario from "./AvatarUsuario"
