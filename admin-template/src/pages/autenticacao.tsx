@@ -5,19 +5,22 @@ import { useState } from "react";
 
 export default function Autenticacao() {
 
-    const { usuario, loginGoogle } = useAuth()
+    const { cadastrar, login, loginGoogle } = useAuth()
 
     const [erro, setErro] = useState(null)
     const [modo, setModo] = useState<'login' | 'cadastro'>('login')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    function submeter() {
-        if(modo === 'login') {
-            console.log('login')
-            exibirErro('Teste de erro', 3)
-        } else {
-            console.log('cadastrar')
+    async function submeter() {
+        try {
+            if(modo === 'login') {
+                await login!(email, senha)
+            } else {
+                await cadastrar!(email, senha)
+            }
+        } catch (e) {
+            exibirErro('Erro ao logar. Tente novamente!')
         }
     }
 
