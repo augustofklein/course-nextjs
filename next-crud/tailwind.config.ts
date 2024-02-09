@@ -1,11 +1,21 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  purge: {
+    content: [
+      './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
+    // Com o uso do safelist garantimos que a interpolação de valores
+    // sejam identificadas.
+    safelist: [
+      /ˆbg-/,
+      /ˆto-/,
+      /ˆfrom-/
+    ]
+  },
+  content: [],
   theme: {
     extend: {
       backgroundImage: {
