@@ -7,7 +7,7 @@ interface BotaoProps {
 export default function Botao(props: BotaoProps) {
 
     const cor = props.cor ?? 'gray'
-
+    
     return(
         <button className={`
             bg-gradient-to-r from-${cor}-400 to-${cor}-700
