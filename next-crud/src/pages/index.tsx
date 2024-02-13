@@ -17,8 +17,12 @@ export default function Home() {
     new Cliente('João', 78, '4')
   ]
 
+  const [cliente, setCliente] = useState<Cliente>(Cliente.vazio)
+  const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
+
   function clienteSelecionado(cliente: Cliente) {
-    console.log(cliente.nome)
+    setCliente(cliente)
+    setVisivel('form')
   }
 
   function clienteExcluido(cliente: Cliente) {
@@ -27,9 +31,13 @@ export default function Home() {
 
   function salvarCliente(cliente: Cliente) {
     console.log(cliente)
+    setVisivel('tabela')
   }
 
-  const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
+  function novoCliente() {
+    setCliente(Cliente.vazio)
+    setVisivel('form')
+  }
 
   return (
     <div className={`
@@ -44,7 +52,7 @@ export default function Home() {
               <Botao
                 cor='green'
                 className="mb-4"
-                onClick={() => setVisivel('form')}
+                onClick={novoCliente}
               >
                 Novo Cliente
               </Botao>
@@ -57,7 +65,7 @@ export default function Home() {
           </>
         ) : (
           <Formulario
-            cliente={clientes[0]}
+            cliente={cliente}
             clienteModou={salvarCliente}
             cancelado={() => setVisivel('tabela')}
           />
