@@ -1,21 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-type Data = {
-    id: number,
-    name: string
-}
+import questoes from '../bancoDeQuestoes'
+import QuestaoModel from '@/model/questao'
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
 
     if (typeof req.query.id !== 'undefined') {
         const id = +req.query.id
 
-        res.status(200).json({
-            id: id,
-            name: 'John Doe'
-        })
+        res.status(200).json(questoes[0].paraObjeto())
     }
 }
