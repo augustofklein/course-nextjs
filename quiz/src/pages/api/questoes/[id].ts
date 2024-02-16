@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import questoes from '../bancoDeQuestoes'
-import QuestaoModel from '@/model/questao'
 
 export default function handler(
   req: NextApiRequest,
