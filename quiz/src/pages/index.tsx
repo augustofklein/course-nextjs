@@ -16,11 +16,11 @@ export default function Home() {
 
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
   const [questao, setQuestao] = useState(questaoMock)
+  const [respostasCertas, setRespostasCertas] = useState<number>(0)
   
   async function carregarIdsDasQuestoes() {
     const resp = await fetch(`${BASE_URL}/questionario`)
     const idsDasQuestoes = await resp.json()
-    console.log(idsDasQuestoes)
     setIdsDasQuestoes(idsDasQuestoes)
   }
 
@@ -39,8 +39,11 @@ export default function Home() {
     idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0])
   }, [idsDasQuestoes])
 
-  function questaoRespondida() {
-
+  function questaoRespondida(questaoRespondida: QuestaoModel) {
+    setQuestao(questaoRespondida)
+    const acertou = questaoRespondida.acertou
+    setRespostasCertas(respostasCertas + (acertou ? 1 : 0))
+    console.log('respostasCertas')
   }
 
   function irPraProximoPasso() {
