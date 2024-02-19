@@ -1,4 +1,4 @@
-export async function getStaticProps() {
+export async function getServerSideProps() {
     /*Teste para verificar que a busca das informações ocorre no lado do servidor*/
     console.log('[Server] gerando props para o componente...')
     const resp = await fetch('http://localhost:3000/api/produtos')
